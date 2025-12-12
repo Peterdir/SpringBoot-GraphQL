@@ -25,13 +25,13 @@ public class Product {
 	private String title;
 	
 	@Column(nullable = false)
-	private Long quantity;
+	private int quantity;
 	
 	@Column(nullable = false)
 	private String descriptions;
 	
 	@Column(nullable = false)
-	private Long price;
+	private float price;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")

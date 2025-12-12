@@ -1,28 +1,86 @@
+# ==================== PRODUCT ====================
+
 type Query {
+  # Product
   products: [Product!]!
   productsByPriceAsc: [Product!]!
   productsByCategory(categoryId: ID!): [Product!]!
   product(id: ID!): Product
+
+  # User
+  users: [User!]!
+  user(id: ID!): User
+
+  # Category
+  categories: [Category!]!
+  category(id: ID!): Category
 }
 
 type Mutation {
+  # Product
   createProduct(input: ProductInput!): Product!
   updateProduct(id: ID!, input: ProductInput!): Product!
   deleteProduct(id: ID!): Boolean!
+
+  # User
+  createUser(input: UserInput!): User!
+  updateUser(id: ID!, input: UserInput!): User!
+  deleteUser(id: ID!): Boolean!
+
+  # Category
+  createCategory(input: CategoryInput!): Category!
+  updateCategory(id: ID!, input: CategoryInput!): Category!
+  deleteCategory(id: ID!): Boolean!
 }
+
+# ==================== ENTITY TYPES ====================
 
 type Product {
-  id: ID!
-  name: String!
+  productId: ID!
+  title: String!
   price: Float!
   quantity: Int
-  desc: String
+  descriptions: String
+  category: Category
 }
 
+type User {
+  userId: ID!
+  fullname: String!
+  email: String!
+  password: String!
+  phone: String
+  categories: [Category]
+}
+
+type Category {
+  categoryId: ID!
+  categoryName: String!
+  images: String
+  users: [User]
+  products: [Product]
+}
+
+# ==================== INPUT TYPES ====================
+
 input ProductInput {
-  name: String!
+  title: String!
   price: Float!
   quantity: Int
-  desc: String
+  descriptions: String
   categoryId: ID
+}
+
+input UserInput {
+  fullname: String!
+  email: String!
+  password: String!
+  phone: String
+  categoryIds: [ID]
+}
+
+input CategoryInput {
+  categoryName: String!
+  images: String
+  userIds: [ID]
 }
