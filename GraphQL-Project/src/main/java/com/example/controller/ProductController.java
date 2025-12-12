@@ -27,7 +27,7 @@ public class ProductController {
 	}
 	
 	@QueryMapping
-	public List<Product> productsByCategoryId(Long categoryId){
+	public List<Product> productsByCategory(Long categoryId){
 		return productService.getProductsByCategoryId(categoryId);
 	}
 	
